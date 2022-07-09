@@ -1,0 +1,27 @@
+import networkx as nx
+import time
+import pandas as pd
+import numpy as np
+import math
+df=pd.read_csv("Sample_50_30_2.csv",header=None)
+n=df.shape[0]
+print("Number of Nodes:",n)
+r=df[3]
+x=df[1]
+y=df[2]
+arr=[[0]*n]*n
+arr=[]
+for i in range(n):
+  col=[]
+  for j in range(n):
+    if(i==j):
+      col.append(0)
+    else:
+      temp=math.sqrt(pow((x[j]-x[i]),2)+pow((y[j]-y[i]),2))
+      if(temp<=(r[i]+r[j])):
+        col.append(1)
+      else:
+        col.append(0)
+  arr.append(col)
+#print(arr)
+pd.DataFrame(arr).to_csv('sample5040_1.csv')
